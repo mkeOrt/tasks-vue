@@ -5,8 +5,6 @@ import { onErrorCaptured, ref } from "vue";
 const error = ref<string | null>(null);
 
 onErrorCaptured((e) => {
-    // Handle the error (e.g., log it, set error state)
-    // improve using analytics service instead of console.error
     error.value = e instanceof Error ? e.message : String(e);
     return false;
 });

@@ -3,14 +3,19 @@ import type { Task } from "../domain/entities/task";
 import { TaskFetchError } from "../domain/errors/taskErrors";
 
 export class TaskFetcher {
-    constructor(private taskRepository: TaskRepository) {}
+    constructor(private taskRepository: TaskRepository) { }
 
     public async exec(): Promise<Task[]> {
         try {
             return await this.taskRepository.getAll();
         } catch (error) {
-            // ⚠️ DEBUG: Uncomment the line below to log the technical error cause
-            // console.error("Error fetching tasks (Technical Cause):", error);
+            // ⚠️ DEBUG: Log structured error for analytics/monitoring
+            // console.error("Error fetching tasks (Technical Cause):", {
+            //     isTaskRepositoryError: error instanceof TaskRepositoryError,
+            //     message: error instanceof Error ? error.message : String(error),
+            //     stack: error instanceof Error ? error.stack : undefined,
+            //     raw: error
+            // });
             // TODO: Replace with analytics/monitoring service (e.g., Sentry, LogRocket)
 
             // Using error coming from backend or default error message
