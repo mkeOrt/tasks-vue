@@ -1,0 +1,16 @@
+<template>
+    <div class="flex items-center gap-2 text-gray-500 py-8 justify-center">
+        <svg class="animate-spin h-5 w-5 mr-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+        </svg>
+        <span>
+            <slot>Loading...</slot>
+        </span>
+    </div>
+</template>
+
+<script setup lang="ts">
+// No props needed, slot for custom text
+</script>

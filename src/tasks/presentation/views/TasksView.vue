@@ -1,6 +1,11 @@
 <script setup lang="ts">
+
+
 import TasksListAsync from "../components/TasksListAsync.vue";
+import BaseAlert from "@/shared/BaseAlert.vue";
+import PageTitle from "@/shared/PageTitle.vue";
 import { onErrorCaptured, ref } from "vue";
+import BaseLoader from "@/shared/BaseLoader.vue";
 
 const error = ref<string | null>(null);
 
@@ -8,22 +13,32 @@ onErrorCaptured((e) => {
     error.value = e instanceof Error ? e.message : String(e);
     return false;
 });
+
+function closeError() {
+    error.value = null;
+}
 </script>
 
 <template>
-    <div class="container mx-auto">
-        <h1 class="text-2xl font-semibold my-3">Tasks</h1>
-        <div v-if="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-            <strong class="font-bold">Error: </strong>
-            <span class="block sm:inline">{{ error }}</span>
+    <div class="min-h-screen bg-gray-50 flex flex-col items-center py-8 px-2">
+        <div class="w-full max-w-2xl bg-white rounded-xl shadow p-6">
+            <PageTitle>
+                <span>📝 Tasks</span>
+            </PageTitle>
+            <BaseAlert v-if="error" type="error" closable @close="closeError">
+                <template #title>
+                    Error
+                </template>
+                {{ error }}
+            </BaseAlert>
+            <Suspense v-else>
+                <template #default>
+                    <TasksListAsync />
+                </template>
+                <template #fallback>
+                    <BaseLoader>Loading tasks...</BaseLoader>
+                </template>
+            </Suspense>
         </div>
-        <Suspense v-else>
-            <template #default>
-                <TasksListAsync />
-            </template>
-            <template #fallback>
-                <p>Loading...</p>
-            </template>
-        </Suspense>
     </div>
 </template>

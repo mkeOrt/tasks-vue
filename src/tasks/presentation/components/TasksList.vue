@@ -6,12 +6,12 @@ defineProps<{ tasks: Task[] }>();
 </script>
 
 <template>
-    <ul>
+    <ul class="divide-y divide-gray-100 bg-gray-50 rounded-xl shadow-sm overflow-hidden">
         <li v-for="(task, index) in tasks" :key="task.id">
-            <TaskListItem :task="task" :class="{
-                'rounded-t-xl': index === 0,
-                'rounded-b-xl': index === tasks.length - 1
-            }" />
+            <TaskListItem :task="task" :class="[
+                index === 0 ? 'rounded-t-xl' : '',
+                index === tasks.length - 1 ? 'rounded-b-xl' : ''
+            ]" />
         </li>
     </ul>
 </template>
