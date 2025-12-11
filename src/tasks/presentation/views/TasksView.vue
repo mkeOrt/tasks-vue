@@ -5,10 +5,12 @@ import PageTitle from '@/shared/PageTitle.vue'
 import { onErrorCaptured, ref } from 'vue'
 import BaseLoader from '@/shared/BaseLoader.vue'
 import { getTaskErrorMessage } from '../mappers/taskErrorMapper'
+import { logError } from '@/shared/utils/logger'
 
 const error = ref<string | null>(null)
 
 onErrorCaptured((e) => {
+  logError(e, 'TasksView')
   error.value = getTaskErrorMessage(e)
   return false
 })
