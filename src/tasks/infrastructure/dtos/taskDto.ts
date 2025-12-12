@@ -1,15 +1,13 @@
 export type TaskDto = {
-    id: number;
-    title: string;
-    done: boolean;
-    created_at: string;
-    updated_at: string;
+  id: number;
+  title: string;
+  done: boolean;
 };
 
 export type TasksResponseDto = {
-    success: boolean;
-    data?: {
-        tasks: TaskDto[];
-    };
-    error?: string;
+  success: boolean;
+  data?: {
+    tasks: TaskDto[];
+  };
+  error?: string;
 };

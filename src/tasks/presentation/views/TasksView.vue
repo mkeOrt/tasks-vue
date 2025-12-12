@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import TasksListAsync from '../components/TasksListAsync.vue'
-import BaseAlert from '@/shared/BaseAlert.vue'
-import PageTitle from '@/shared/PageTitle.vue'
-import { onErrorCaptured, ref } from 'vue'
-import BaseLoader from '@/shared/BaseLoader.vue'
 import { getTaskErrorMessage } from '../mappers/taskErrorMapper'
 import { logError } from '@/shared/utils/logger'
+import { onErrorCaptured, ref } from 'vue'
+import BaseAlert from '@/shared/presentation/components/BaseAlert.vue'
+import BaseLoader from '@/shared/presentation/components/BaseLoader.vue'
+import PageTitle from '@/shared/presentation/components/PageTitle.vue'
+import TasksListAsync from '../components/TasksListAsync.vue'
 
 const error = ref<string | null>(null)
 

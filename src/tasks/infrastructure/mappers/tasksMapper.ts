@@ -14,8 +14,6 @@ export class TasksMapper {
       dto.id,
       dto.title,
       dto.done,
-      new Date(dto.created_at),
-      new Date(dto.updated_at)
     );
   }
 }
